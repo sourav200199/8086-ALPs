@@ -1,0 +1,23 @@
+ASSUME CS:CODE
+CODE SEGMENT
+START:MOV AX, 0000H
+      MOV BL, AL
+      MOV CL, AL
+      MOV SI, 1000H
+      MOV BL, [SI]
+      DEC BL
+L3: MOV CL, BL
+    MOV SI, 2000H
+L2: MOV AL, [SI]
+    CMP AL, [SI+1]
+    JLE L1
+    XCHG AL, [SI+1]
+    MOV [SI], AL
+L1: INC SI
+    LOOP L2
+    DEC BL
+    JNZ L3
+    INT 03H
+CODE ENDS
+END START
+END

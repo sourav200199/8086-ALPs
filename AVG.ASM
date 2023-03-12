@@ -1,0 +1,21 @@
+ASSUME CS:CODE
+CODE SEGMENT
+START: MOV AX, 0000H
+       MOV CL, AL
+       MOV DL, AL
+       MOV SI, 2000H
+       MOV CL, [SI]
+       MOV DL, [SI]
+       MOV DI, 1000
+       INC SI
+L1: ADD AX, [SI]
+    INC SI
+    INC DL
+    CMP CL, DL
+    JNZ L1
+    DIV CX, AX
+    MOV [DI], AX
+    INT 03H
+CODE ENDS
+END START
+END
